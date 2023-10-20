@@ -163,17 +163,17 @@ node BEAM_SEARCH2(node n) {
 			cand.cur=it->second;
 			cand.str=cand.str+'\n'+unword[it->second];
 			node n2=BEAM_SEARCH(cand);
-            ofstream fi("gene.cpp");
-            fi<<n2.str;
-            fi.close();
-            callpy();    
-            cand.ev=n2.ev+prob[it->second];
-            int number;
-            FILE *file;
-            file = fopen("log.txt", "r");
-            fscanf(file, "%d", &number);
-            fclose(file);
-            if(number==0){cand.ev=0;}    
+			ofstream fi("gene.cpp");
+			fi<<n2.str;
+			fi.close();
+			callpy();
+			cand.ev=n2.ev+prob[it->second];
+			int number;
+			FILE *file;
+			file = fopen("log.txt", "r");
+			fscanf(file, "%d", &number);
+			fclose(file);
+			if(number==0){cand.ev=0;}    
 			if(cand.dot){cand.ev+=100000;}
 			vn.push_back(cand);   
 			}
@@ -286,8 +286,7 @@ int main(){
     string s=to_string(i);
     reading(s+".txt");
     }
-    
-    
+	
 	string rrr;
 	int cur;
 	cur=1;
