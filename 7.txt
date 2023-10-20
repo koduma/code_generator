@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+    char W[31], S[31], T[31];
+    scanf("%s", W);
+    int len = strlen(W), count = 0;
+    for(int i = 0; i < len; i++){
+        if(W[i] == 'a' || W[i] == 'i' || W[i] == 'u' || W[i] == 'e' || W[i] == 'o'){
+            S[i] = '#';
+            count++;
+        }else{
+            S[i] = W[i];
+        }
+    }
+    //printf("%s\n", S);
+    int j = 0;
+    for(int i = 0; i < len; i++){
+        
+        if(S[i] == '#'){
+        }else{
+            T[j] = S[i];
+            j++;
+        }
+        
+    }
+
+    for(int j = 0; j < len-count; j++){
+                printf("%c", T[j]);
+            }
+    printf("\n");
+    return 0;
+}

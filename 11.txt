@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int main(){
+    char atcoder[]="atcoder";
+    char S[16],T[16];
+    scanf("%s %s",S,T);
+    int success=1;
+    for(int i=0;S[i];++i){
+        if(S[i]==T[i]) continue;
+        else if(S[i]=='@'){
+            //atcoder
+            int j;
+            for(j=0;j<7;++j) if(T[i]==atcoder[j]) break;
+            if(j==7){
+                success=0; break;
+            }
+        }else if(T[i]=='@'){
+            //atcoder
+            int j;
+            for(j=0;j<7;++j) if(S[i]==atcoder[j]) break;
+            if(j==7){
+                success=0; break;
+            }
+        }
+        else{
+            success=0; break;
+        }
+    }
+    printf("%s\n",success?"You can win":"You will lose");
+    return 0;
+}

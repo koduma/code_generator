@@ -1,0 +1,16 @@
+#include<stdio.h>
+int main(){
+	char s[4][9];
+	for (int i = 0; i <4 ; i++) {
+		for (int j = 0; j < 8; j++) {
+			scanf("%c", &s[i][j]);
+		}
+	}
+	for (int i = 3; i >= 0; i--) {
+		for (int j = 6; j >= 0; j--) {
+			printf("%c", s[i][j]);
+		}
+		printf("\n");
+	}
+	return 0;
+}

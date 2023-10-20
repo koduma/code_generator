@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <string.h>
+int main(){
+	int n,tmp;
+	char s[]={"123456"};
+	scanf("%d",&n);
+	//30回で元に戻るらしい
+	for(int i=0;i<n%30;i++){
+		tmp=s[i%5];
+		s[i%5]=s[i%5+1];
+		s[i%5+1]=tmp;
+	}
+	printf("%s\n",s);
+	return 0;
+}

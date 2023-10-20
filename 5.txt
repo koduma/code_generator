@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<string.h>
+
+char tab[289];
+
+int main(){
+    memset(tab,0,sizeof(tab));
+
+    int N;
+    scanf("%d",&N);
+    for(int i=0;i<N;++i){
+        char s[10];
+        scanf("%s",s);
+        char *sS=s,*sE=s+5;
+        int Sh = (sS[0]-'0')*10+(sS[1]-'0');
+        int Sm = (sS[2]-'0')*10+(sS[3]-'0');
+        int Eh = (sE[0]-'0')*10+(sE[1]-'0');
+        int Em = (sE[2]-'0')*10+(sE[3]-'0');
+
+        //rounding
+        Sm-=Sm%5;
+
+        if(Em>=58){++Eh;Em=0;}
+        else Em += !(Em%5) ? 0 : 5-Em%5;
+
+        //encode
+        int Si=Sh*12+Sm/5;
+        int Ei=Eh*12+Em/5;
+        for(int i=Si;i<Ei;++i) tab[i]=1;
+    }
+
+    //decode
+    char on=0;
+    for(int i=0;i<24*12;++i){
+        if(!on && tab[i]){
+            on=1;
+            int hi=i/12;
+            int mi=i%12;
+            printf("%02d%02d-",hi,mi*5);
+        }
+        else if(on && !tab[i]){
+            on=0;
+            int hi=i/12;
+            int mi=i%12;
+            printf("%02d%02d\n",hi,mi*5);
+        }
+    }
+    if(on){
+        printf("2400\n");
+    }
+
+    return 0;
+}

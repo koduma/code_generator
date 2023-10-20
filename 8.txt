@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+    int xa,ya,xb,yb,xc,yc;
+    scanf("%d %d %d %d %d %d",&xa,&ya,&xb,&yb,&xc,&yc);
+    int a=xb-xa;
+    int b=yb-ya;
+    int c=xc-xa;
+    int d=yc-ya;
+    printf("%.03lf\n", abs(a*d-b*c)/2.0);
+    return 0;
+}
