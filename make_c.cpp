@@ -241,8 +241,8 @@ void reading(string s){
             
         }
 	}
-    
-    vector<int>vec;
+	
+	vector<int>vec;
     	
 	for(int i=0;i<(int)t_path.size();i++){
 	
@@ -300,5 +300,8 @@ int main(){
 	n.dot=false;
 	n=BEAM_SEARCH2(n);
 	cout<<"ev="<<n.ev<<",output=\n"<<n.str<<endl;
+	ofstream fi("gene.cpp");
+	fi<<n.str;
+	fi.close();
 	return 0;
 }
