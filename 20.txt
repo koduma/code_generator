@@ -28,7 +28,7 @@ void initialize(queue *que){
     que -> head = que -> tail = &(que -> sec[0]);
 }
 
-int main(void){
+int main(){
     int time, n, m, sec;
     queue tako_que, kyaku_que;
 
