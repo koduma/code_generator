@@ -1,0 +1,68 @@
+//queue
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// define struct queue
+typedef struct queue{
+    int sec[101], count;
+    int *head, *tail;
+}queue;
+
+// define enqueue on tail and count++
+void enqueue(queue *que, int sec){
+    *(que -> tail) = sec;
+    que -> tail++;
+    que -> count++;
+}
+
+// define dequeue from head and count--
+void dequeue(queue *que){
+    que -> head++;
+    que -> count--;
+}
+
+// define initialize
+void initialize(queue *que){
+    que -> count = 0;
+    que -> head = que -> tail = &(que -> sec[0]);
+}
+
+int main(void){
+    int time, n, m, sec;
+    queue tako_que, kyaku_que;
+
+    // initialize tako_que and kyaku_que
+    initialize(&tako_que);
+    initialize(&kyaku_que);
+
+    // get time, n, tako.sec, m and kyaku.sec
+    scanf("%d", &time);
+    scanf("%d", &n);
+    for(int i = 0; i < n; i++){
+        scanf("%d", &sec);
+        enqueue(&tako_que, sec);
+    }
+    scanf("%d", &m);
+    for(int i = 0; i < m; i++){
+        scanf("%d", &sec);
+        enqueue(&kyaku_que, sec);
+    }
+
+    // repeat dequeue kyaku_que and tako_que
+    while(tako_que.count != 0 && kyaku_que.count != 0){
+        if(*(tako_que.head) <= *(kyaku_que.head) && *(kyaku_que.head) <= *(tako_que.head) + time){
+            dequeue(&kyaku_que);
+        }
+        dequeue(&tako_que);
+    }
+
+    // print answer
+    if(kyaku_que.count == 0){
+        printf("yes\n");
+    }else{
+        printf("no\n");
+    }
+
+    return 0;
+}
