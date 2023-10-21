@@ -264,9 +264,8 @@ int main(){
 	
 	string rrr;
 	int cur;
-	cur=1;
+	cur=word["//dp"];
 	unordered_map<int, int>v2;
-	//g_str2(cur,0,v2,rrr,0);
 	node n;
 	n.cur=cur;
 	n.v=v2;
