@@ -257,7 +257,7 @@ void reading(string s){
 
 int main(){
 	
-	for(int i=1;i<=17;i++){
+	for(int i=1;i<=21;i++){
 	string s=to_string(i);
 	reading(s+".txt");
 	}
