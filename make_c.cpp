@@ -162,7 +162,7 @@ node BEAM_SEARCH2(node n) {
 		}
 		sort(vec.begin(),vec.end());
 		int push_node=0;
-		for (int j = 0; push_node < 10 ;j++) {
+		for (int j = 0; push_node < 100 ;j++) {
 			if(j>=(int)vec.size()){break;}
 			int x=vec[j].second;
 			node temp = vn[x];
