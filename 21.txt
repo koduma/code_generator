@@ -5,8 +5,7 @@
 static int D0[51*2][51*2];
 static int D[51*2][51*2];
 
-int main(int argc, char** argv)
-{
+int main(){
 	int N;
 	int Q;
 	int i, j, k;
