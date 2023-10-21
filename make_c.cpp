@@ -53,44 +53,22 @@ int cur;
 unordered_map<int, int>v;
 string str;
 int ev;
-bool dot;
 int length;    
 };
-
-int dot_value=0;
 
 void callpy(){
     
     system("python3 compile.py");
     
-    /*
-    
-	pid_t pid = fork();
-	if (pid < 0) {
-		perror("fork");
-		exit(-1);
-	} else if (pid == 0) {
-		// 子プロセスで別プログラムを実行
-		execl("python3 intel.py", "python3 intel.py");
-		exit(-1);
-	}
-
-	// 親プロセス
-	int status;
-	pid_t r = waitpid(pid, &status, 0); //子プロセスの終了待ち
-    
-    */
-    
 }
 
 node BEAM_SEARCH(node n) {
-    if(n.dot){return n;}
 	vector<node>dque;
 	dque.push_back(n);
 
 	node bestAction=n;
-    
-    int maxvalue=0;
+	
+	int maxvalue=0;
 
 	//2手目以降をビームサーチで探索
 	for (int i = 0; i < TURN; i++) {
@@ -108,7 +86,6 @@ node BEAM_SEARCH(node n) {
 				cand.cur=it->second;
 				cand.str=cand.str+'\n'+unword[it->second];
 				cand.ev=cand.ev+prob[it->second];
-				if(cand.dot){cand.ev+=dot_value;}
 				vn.push_back(cand);
 			}
 		}
@@ -173,8 +150,7 @@ node BEAM_SEARCH2(node n) {
 			file = fopen("log.txt", "r");
 			fscanf(file, "%d", &number);
 			fclose(file);
-			if(number==0){cand.ev=0;}    
-			if(cand.dot){cand.ev+=100000;}
+			if(number==0){cand.ev=0;}
 			vn.push_back(cand);   
 			}
 		}
@@ -206,8 +182,8 @@ node BEAM_SEARCH2(node n) {
 int counter=0;
 
 void reading(string s){
-
-    string line;
+	
+	string line;
 	vector<string> t_path;
 	ifstream myfile (s);
 	while(getline(myfile,line)){
@@ -256,8 +232,7 @@ void reading(string s){
         if(j==(int)t_path[i].size()-1){
         www+=w;    
         vec.push_back(word[www]);
-        prob[word[www]]++;
-        if(prob[word[www]]>dot_value){dot_value=prob[word[www]]+1;}    
+        prob[word[www]]++;    
         www="";
         }
         else{
@@ -281,11 +256,11 @@ void reading(string s){
 
 
 int main(){
-    
-    for(int i=1;i<=17;i++){
-    string s=to_string(i);
-    reading(s+".txt");
-    }
+	
+	for(int i=1;i<=17;i++){
+	string s=to_string(i);
+	reading(s+".txt");
+	}
 	
 	string rrr;
 	int cur;
@@ -297,7 +272,6 @@ int main(){
 	n.v=v2;
 	n.str=unword[cur];
 	n.ev=0;
-	n.dot=false;
 	n=BEAM_SEARCH2(n);
 	cout<<"ev="<<n.ev<<",output=\n"<<n.str<<endl;
 	ofstream fi("gene.cpp");
