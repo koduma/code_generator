@@ -1,3 +1,5 @@
+//calc
+
 #include <stdio.h>
 
 #define E (1e-4)
