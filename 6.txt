@@ -1,3 +1,5 @@
+//max
+
 #include<stdio.h>
 int main(){
 	int max = 0, a;
