@@ -347,7 +347,7 @@ void reading(string s){
 
 int main(){
 	
-	string start="//hello";
+	string start="//dp";
 	int mind=1000000;
 	int find=-1;
     
