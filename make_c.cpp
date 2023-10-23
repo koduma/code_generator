@@ -219,7 +219,7 @@ node BEAM_SEARCH3(node n) {
 		for (int k = 0; k < ks; k++) {
 			node temp = dque[k];
 			(temp.v)[temp.cur]++;
-			if((temp.v)[temp.cur]>=2){continue;}
+			if((temp.v)[temp.cur]>=5){continue;}
 			auto p = words.equal_range(temp.cur);
 			for (auto it = p.first; it != p.second; ++it) {   
 			node cand = temp;
