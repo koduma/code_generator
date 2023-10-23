@@ -185,6 +185,7 @@ node BEAM_SEARCH2(node n) {
 		}
 		sort(vec.begin(),vec.end());
 		int push_node=0;
+		bool congrats=false;
 		for (int j = 0; push_node < 10;j++) {
 			if(j>=(int)vec.size()){break;}
 			int x=vec[j].second;
@@ -193,12 +194,14 @@ node BEAM_SEARCH2(node n) {
 				maxvalue=temp.ev;
 				bestAction=temp;
 				cout<<temp.str<<endl;
+				congrats=true;
 			}
 			if (i < TURN) {
 				dque.push_back(temp);
 				push_node++;
 			}
 		}
+		if(!congrats){return bestAction;}
 	}
 	return bestAction;
 }
