@@ -169,9 +169,9 @@ node BEAM_SEARCH2(node n) {
 			cand.str=cand.str+'\n'+unword[it->second];
 			node n2=BEAM_SEARCH(cand);
 			string x=ans.substr(0,(int)cand.str.size());
-			string y=cand.str;                 
+			string y=cand.str;
 			int diff=distance(x,y);
-			if(diff==0){cand.ev=1000000;}
+			if(diff==rnd(0,0)){cand.ev=10000-diff;}
 			else{cand.ev=0;}    
 			cand.ev+=-diff+(i+1)*100;//+prob[it->second]+n2.ev;                  
 			vn.push_back(cand);   
@@ -219,7 +219,7 @@ node BEAM_SEARCH3(node n) {
 		for (int k = 0; k < ks; k++) {
 			node temp = dque[k];
 			(temp.v)[temp.cur]++;
-			if((temp.v)[temp.cur]>=5){continue;}
+			if((temp.v)[temp.cur]>=2){continue;}
 			auto p = words.equal_range(temp.cur);
 			for (auto it = p.first; it != p.second; ++it) {   
 			node cand = temp;
@@ -362,7 +362,7 @@ int main(){
 	break;    
 	}
 	myfile.close();
-	int d=distance(start,t_path);    
+	int d=distance(start,t_path);
 	if(mind>d){mind=d;find=i;}   
 	}
 	
@@ -371,7 +371,7 @@ int main(){
 	ifstream myfile (to_string(find)+".txt");
 	while(getline(myfile,line)){
 		if(line!=""){
-			t_path+=line+'\n';
+		t_path+=line+'\n';
 		}    
 	}
 	
