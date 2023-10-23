@@ -1,0 +1,38 @@
+//abc200_d
+
+#include <stdio.h>
+#include <string.h>
+
+const int mod = 200;
+typedef struct { int id, p; } DP;
+DP dp[205]; int N;
+
+int tmp[205], sz;
+void pr(int t, int i) {
+	sz = t;
+	while (i >= 0) tmp[sz++] = dp[i].id, i = dp[i].p;
+	printf("%d", sz);
+	while (sz--) printf(" %d", tmp[sz]); putchar('\n');
+}
+	
+int main(){
+	int i, j, k, a, A, N;
+	
+	memset(dp, 0, sizeof(dp));
+	scanf("%d", &N);
+	for (i = 1; i <= N; ++i) {
+		scanf("%d", &A), a = A % mod;
+		if (dp[a].id) {	puts("Yes");
+			pr(0, a), printf("1 %d\n", i); return 0;
+		}
+		dp[a].id = i, dp[a].p = -1;
+		for (j = 0; j < mod; ++j) if (dp[j].id && dp[j].id != i) {
+			k = (j+a) % mod;
+			if (dp[k].id) { puts("Yes");
+				pr(0, k), tmp[0] = i, pr(1, j);	return 0;
+			} else dp[k].id = i, dp[k].p = j;
+		}
+	}
+	puts("No");
+	return 0;
+}

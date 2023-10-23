@@ -1,0 +1,18 @@
+//abc201_a
+
+#include <stdio.h>
+
+int main(){
+    int A1, A2, A3;
+    char *ans = "No";
+
+    scanf("%d %d %d", &A1, &A2, &A3);
+    if (A3 - A2 == A2 - A1 || A2 - A3 == A3 - A1 || A3 - A1 == A1 - A2)
+    {
+        ans = "Yes";
+    }
+
+    printf("%s\n", ans);
+
+    return 0;
+}

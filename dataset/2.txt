@@ -1,0 +1,16 @@
+//abc200_a
+
+#include <stdio.h>
+#include <math.h>
+
+int main(){
+  int n, ans;
+  scanf("%d", &n);
+  ans = n;
+  ans /= 100;
+  if (n % 100 != 0) {
+    ans++;
+  }
+  printf("%d", ans);
+  return 0;
+}

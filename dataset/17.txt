@@ -1,0 +1,34 @@
+//abc202_d
+
+#include <stdio.h>
+
+#define N	60
+
+long long ch[N + 1][N + 1];
+
+void init() {
+	int i, j;
+
+	ch[0][0] = 1;
+	for (i = 1; i <= N; i++) {
+		ch[i][0] = 1;
+		for (j = 1; j <= i; j++)
+			ch[i][j] = ch[i - 1][j] + ch[i - 1][j - 1];
+	}
+}
+
+int main(){
+	static char cc[N + 1];
+	int n, a, b, i;
+	long long k;
+
+	init();
+	scanf("%d%d%lld", &a, &b, &k), n = a + b;
+	for (i = 0; i < n; i++)
+		if (a > 0 && k <= ch[a + b - 1][a - 1])
+			cc[i] = 'a', a--;
+		else
+			cc[i] = 'b', k -= ch[a + b - 1][a - 1], b--;
+	printf("%s\n", cc);
+	return 0;
+}

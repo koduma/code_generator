@@ -1,0 +1,46 @@
+//abc200_c
+
+#include<stdio.h>
+
+int main(){
+  int n, i, j = 1, k, tmp;
+  long count = 0;
+  
+  scanf("%d", &n);
+  
+  int a[n+1];
+  int b[n];
+  for(i = 0; i < n; i++){
+    scanf("%d", &a[i]);
+  }
+  a[i] = -1;
+
+  while(1){
+    k = 0;
+    j = 1;
+    tmp = 0;
+    while(a[j] != -1){
+      if((a[0] - a[j]) % 200 == 0){
+        tmp++;
+      }
+      else{
+        b[k] = a[j];
+        k++;
+      }
+      j++;
+    }
+
+    while(tmp > 0){
+      count += tmp;
+      tmp--;
+    }
+
+    b[k] = -1;
+    for(j = 0; j < k+1; j++) a[j] = b[j];
+    if(a[0] == -1 || a[1] == -1) break;
+  }
+  
+  printf("%ld", count);
+  
+  return 0;
+}

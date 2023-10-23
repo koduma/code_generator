@@ -1,0 +1,27 @@
+//abc203_a
+
+#include <stdio.h> 
+
+int main(){
+	int a,b,c;   /*abc*/
+	scanf("%d%d%d",&a,&b,&c);
+	
+	if(a==b)
+	{
+		printf("%d",c);
+	}
+	else if(b==c)
+	{
+		printf("%d",a);
+	 
+	}
+	else if(a==c)
+	{
+		printf("%d",b);
+		
+	}
+	else printf("%d",0);
+	
+	
+	return 0;
+}

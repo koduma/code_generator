@@ -1,0 +1,70 @@
+//abc200_e
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int mycmpi(const void *a, const void *b) { return *(const int *)a - *(const int *)b; }
+#define sorti(x, n) qsort(x, n, sizeof(x[0]), mycmpi)
+typedef long long LL;
+
+LL count3(int s, int n) {
+    // a>=1, b>=1, c>=1
+    if (s<3) return 0;
+    if (n+n+n<s) return 0;
+    LL v=s-1; v*=(s-2); v/=2;
+    // a>n, b>=1, c>=1
+    LL t;
+    if (s>=n+1+1+1) {
+        t=s-n-1; t*=(t-1); t/=2;
+        v-=t; v-=t; v-=t;
+    }
+    // a>n, b>n, c>=1
+    if (s>=n+1+n+1+1) {
+        t=s-n-n-1; t*=(t-1); t/=2;
+        v+=t; v+=t; v+=t;
+    }
+    if (s>=n+1+n+1+n+1) {
+        t=s-n-n-n-1; t*=(t-1); t/=2;
+        v-=t;
+    }
+    return v;
+}
+LL count2(int s, int n) {
+    if (n+n<s) return 0;
+    if (s<2) return 0;
+    // a>=1, b>=1
+    LL v=s-1;
+    // a>n, b>=1
+    LL t;
+    if (s>=n+2) {
+        t=s-n-1;
+        v-=t;
+        v-=t;
+    }
+    if (s>=n+n+2) {
+        t=(s-n-n-1);
+        v+=t;
+    }
+    return v;
+}
+int main(){
+    int n, i, s;
+    LL k, c, x1, x2, x3;
+    scanf("%d %lld", &n, &k);
+    for (s=3; ;s++) {
+        c=count3(s, n);
+        if (k<=c) break;
+        k-=c;
+    }
+    for (x1=1; x1<=s-2; x1++) {
+        c=count2(s-x1, n);
+        if (k<=c) break;
+        k-=c;
+    }
+    x2=1; x3=s-x1-x2;
+    while(x3>n) { x3--; x2++; }
+    while(k>1) { k--; x2++; x3--; }
+    printf("%lld %lld %lld\n", x1, x2, x3);
+    return 0;
+}

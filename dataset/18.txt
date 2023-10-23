@@ -1,0 +1,43 @@
+//abc202_e
+
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct List{
+	long key;
+	struct List*next;
+}List;
+List*add(List*L,long k){
+	List*res=(List*)malloc(sizeof(List));
+	(*res).key=k;
+	(*res).next=L;
+	return res;
+}
+List*G[1<<18],*q[1<<18];
+const int mask=(1<<20)-1;
+int N,Q,U[1<<18],D[1<<18],ans[1<<18],cnt[1<<18];
+void dfs(int v,int p,int d){
+	for(List*e=q[v];e;e=(*e).next)ans[(*e).key&mask]=cnt[(*e).key>>20];
+	cnt[d]++;
+	for(List*e=G[v];e;e=(*e).next)if((*e).key!=p){
+		dfs((*e).key,v,d+1);
+	}
+	for(List*e=q[v];e;e=(*e).next){
+		int i=(*e).key&mask,j=(*e).key>>20;
+		ans[i]=cnt[j]-ans[i];
+	}
+}
+int main(){
+	scanf("%d",&N);
+	for(int i=2;i<=N;i++){
+		int p;scanf("%d",&p);
+		G[i]=add(G[i],p);
+		G[p]=add(G[p],i);
+	}
+	scanf("%d",&Q);
+	for(int i=0;i<Q;i++){
+		scanf("%d%d",U+i,D+i);
+		q[U[i]]=add(q[U[i]],(long)D[i]<<20|i);
+	}
+	dfs(1,0,0);
+	for(int i=0;i<Q;i++)printf("%d\n",ans[i]);
+}

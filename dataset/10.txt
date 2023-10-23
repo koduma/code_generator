@@ -1,0 +1,43 @@
+//abc201_c
+
+#include <stdio.h>
+
+void bt(int k, int *X, char *S, unsigned *cnt)
+{
+    if(k == 4)
+    {
+        int fr[10] = {0};
+        for(int i = 0; i<4; i++){
+            fr[X[i]]++;
+        }
+        int issol = 1;
+        for(int i = 0; i < 10; i++)
+        {
+            if(S[i] == 'o' && fr[i] == 0){
+                issol = 0;
+            }else if(S[i] == 'x' && fr[i]>0){
+                issol = 0;
+            }
+        }
+        if(issol == 1){
+            (*cnt) ++; 
+        }
+        return;
+    }
+    for(int i = 0; i<10; i++)
+    {
+        X[k] = i;
+        bt(k+1, X, S, cnt);
+    }
+}
+
+int main(){
+    char S[11] = {0};
+    scanf("%s", S);
+    int X[4] = {0};
+    unsigned cnt = 0;
+    bt(0, X, S, &cnt);
+    printf("%u", cnt);
+
+    return 0;
+}

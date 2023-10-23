@@ -1,0 +1,65 @@
+//abc200_f
+
+#include <stdio.h>
+
+long long power_mod (long long a, long long b, long long mod_num) {
+  long long ans = 1LL;
+  
+  if (b > 0LL) {
+    ans = power_mod (a, b/2LL, mod_num);
+    ans = (ans * ans) % mod_num;
+    if (b%2LL == 1LL) {
+      ans = (ans * (a % mod_num)) % mod_num;
+    }
+  }
+  
+  return ans;
+}
+
+int main(){
+  char s[100001] = "";
+  long long k = 0LL;
+  
+  int res = 0;
+  
+  long long ans = 0LL;
+  long long mod_num = 1000000007LL;
+  
+  int len = 0;
+  long long cnt = 0LL;
+  long long pow2 = 0LL;
+  long long inv2 = (mod_num+1LL)/2LL;
+  
+  res = scanf("%s", s);
+  res = scanf("%lld", &k);
+  
+  while (s[len] != '\0') {
+    if (s[len] == '?') {
+      cnt += 1LL;
+    }
+    len++;
+  }
+  
+  if (len < 2 && k < 2LL) {
+    printf("0\n");
+    return 0;
+  }
+  
+  pow2 = power_mod(2LL, cnt*k, mod_num);
+  
+  for (int i = 0; i < len; i++) {
+    if (s[i] == '?' || s[(i+1)%len] == '?') {
+      ans += inv2;
+    } else if (s[i] != s[(i+1)%len]) {
+      ans += 1LL;
+    }
+  }
+  
+  ans %= mod_num;
+  ans *= (pow2*k)%mod_num;
+  ans %= mod_num;
+  ans *= inv2;
+  
+  printf("%lld\n", ans%mod_num);
+  return 0;
+}
