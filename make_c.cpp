@@ -171,7 +171,7 @@ node BEAM_SEARCH2(node n) {
 			string x=ans.substr(0,(int)cand.str.size());
 			string y=cand.str;
 			int diff=distance(x,y);
-			if(diff==rnd(0,0)){cand.ev=10000-diff;}
+			if(diff==rnd(0,0)){cand.ev=100000-diff;}
 			else{cand.ev=0;}    
 			cand.ev+=-diff+(i+1)*100;//+prob[it->second]+n2.ev;                  
 			vn.push_back(cand);   
@@ -219,7 +219,7 @@ node BEAM_SEARCH3(node n) {
 		for (int k = 0; k < ks; k++) {
 			node temp = dque[k];
 			(temp.v)[temp.cur]++;
-			if((temp.v)[temp.cur]>=5){continue;}
+			if((temp.v)[temp.cur]>=2){continue;}
 			auto p = words.equal_range(temp.cur);
 			for (auto it = p.first; it != p.second; ++it) {   
 			node cand = temp;
@@ -347,7 +347,11 @@ void reading(string s){
 
 int main(){
 	
-	string start="//dp";
+	string start;
+	
+	getline(cin, start);
+    
+    
 	int mind=1000000;
 	int find=-1;
     
@@ -356,32 +360,37 @@ int main(){
 	reading(s+".txt");
 	string line;
 	string t_path="";
-	ifstream myfile (s+".txt");
+	ifstream myfile (s+"_problem.txt");
 	while(getline(myfile,line)){
-	t_path+=line;
-	break;    
+	t_path+=line;    
 	}
 	myfile.close();
-	int d=distance(start,t_path);
-	if(mind>d){mind=d;find=i;}   
+	while(1){
+	if((int)t_path.size()<2000){t_path+="&";}
+	else{break;}
+	}
+	int d=distance(start,t_path);    
+	if(mind>d){mind=d;find=i;}
+	cout<<"i="<<i<<",d="<<d<<endl;    
 	}
 	
 	string line;
+	string tmp="";
 	string t_path="";
 	ifstream myfile (to_string(find)+".txt");
 	while(getline(myfile,line)){
-		if(line!=""){
-		t_path+=line+'\n';
-		}    
+	if(line!=""){    
+	t_path+=line+'\n';
+	if(tmp==""){tmp=line;}
+	}    
 	}
-	
+	myfile.close();
 	ans=t_path;
-	
 	cout<<find<<".txt"<<endl;
 	
 	string rrr;
 	int cur;    
-	cur=word[start];
+	cur=word[tmp];
 	unordered_map<int, int>v2;
 	node n;
 	n.cur=cur;
