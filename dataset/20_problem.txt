@@ -1,0 +1,3 @@
+Takahashi threw three dice, and they showed three numbers a, b, and c.
+
+If there are two same numbers among a, b, and c, print the remaining number. Otherwise, print 0.

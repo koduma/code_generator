@@ -1,0 +1,9 @@
+We have a rooted tree with N vertices, numbered 1,2,…,N.
+Vertex 1 is the root, and the parent of Vertex i(2≤i≤N) is Vertex Pi.
+
+You are given Q queries. 
+In the i-th query 
+(1≤i≤Q), given integers Ui and Di, find the number of vertices u that satisfy all of the following conditions:
+
+Vertex Ui is in the shortest path from u to the root (including the endpoints).
+There are exactly Di edges in the shortest path from u to the root.

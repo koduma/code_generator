@@ -1,0 +1,5 @@
+Takahashi has rolled three dice. They are showing numbers a, b, and c on the top faces.
+
+Find the sum of the numbers on the bottom faces.
+
+Here, each of these dice is a standard cubic die, where the sum of the numbers on opposite faces is 7.

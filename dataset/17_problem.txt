@@ -1,0 +1,1 @@
+Among the strings of length A+B containing A occurrences of a and B occurrences of b, find the string that comes K-th in the lexicographical order.

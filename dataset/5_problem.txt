@@ -1,0 +1,10 @@
+You are given a sequence of N positive integers: A=(A1,A2,…,AN). 
+Determine whether there is a pair of sequences B=(B1,B2,…,Bx),C=(C1,C2,…,Cy) satisfying all of the conditions, and print one such pair if it exists.
+
+1≤x,y≤N.
+1≤B1<B2<⋯<Bx≤N.
+1≤C1<C2<⋯<Cy≤N.
+B and C are different sequences.
+Here, we consider 
+B and C different when x!=y or there is an integer i (1≤i≤min(x,y)) such that Bi!=Ci.
+AB1+AB2+⋯+ABx and AC1+AC2+⋯+ACy are equal modulo 200.

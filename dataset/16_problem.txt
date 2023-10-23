@@ -1,0 +1,3 @@
+Given are three sequences of length N each: A=(A1,A2,…,AN), B=(B1,B2,…,BN), and C=(C1,C2,…,CN), consisting of integers between 1 and N (inclusive).
+
+How many pairs (i,j) of integers between 1 and N (inclusive) satisfy Ai=BCj?

@@ -1,0 +1,5 @@
+You are given a sequence of three numbers:A=(A1,A2,A3).
+
+Is it possible to rearrange the elements of A into an arithmetic sequence?
+
+In other words, is it possible to rearrange the elements of A so that A3−A2=A2−A1?

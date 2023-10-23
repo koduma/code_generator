@@ -1,0 +1,9 @@
+There are N people, who are given ID numbers 1 through N, standing in a row from left to right. Initially, the ID number of the i-th person from the left is Pi.
+
+Your objective is to rearrange the people in ascending order of the ID number from left to right, by repeatedly doing the three kinds of operations below.
+You can do these operations any number of times (possibly zero) in any order.
+
+Choose an integer i (1≤i≤N), pay the cost Ai, and move Person i (the person with the ID number i) to any position of your choice.
+Choose an integer i (1≤i≤N), pay the cost Bi, and move Person i to the left end of the row.
+Choose an integer i (1≤i≤N), pay the cost Ci, and move Person i to the right end of the row.
+Minimize the total cost you pay before achieving the objective.

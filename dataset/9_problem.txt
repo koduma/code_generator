@@ -1,0 +1,4 @@
+The Republic of AtCoder has N mountains. 
+The i-th mountain has a name Si and a height of Ti.
+
+Return the name of the second highest mountain there. It is guaranteed that all the mountains have different names and different heights.

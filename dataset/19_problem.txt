@@ -1,0 +1,7 @@
+We have N points P1,P2,…,PN on a plane. 
+The coordinates of Pi is (Xi,Yi). We know that no three points lie on the same line.
+
+For a subset S of {P1,P2,…,PN} with at least three elements, let us define the convex hull of S as follows:
+
+The convex hull is the convex polygon with the minimum area such that every point of S is within or on the circumference of that polygon.
+Find the number, modulo (10^9+7), of subsets S such that the area of the convex hull is an integer.

@@ -1,0 +1,9 @@
+We have a weighted tree with N vertices. 
+The i-th edge connects Vertex ui and Vertex vi bidirectionally and has a weight wi.
+
+For a pair of vertices 
+(x,y), let us define 
+dist(x,y) as follows:
+
+the XOR of the weights of the edges in the shortest path from x to y.
+Find dist(i,j) for every pair (i,j) such that 1≤i<j≤N, and print the sum of those values modulo (10^9+7).

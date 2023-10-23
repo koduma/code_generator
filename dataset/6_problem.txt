@@ -1,0 +1,12 @@
+Takahashi, a pastry chef at ABC Confiserie, has decided to make cakes to celebrate AtCoder Beginner Contest 200.
+
+A cake made by Takahashi has three parameters: beauty, taste, and popularity, each of which is represented by an integer between 1 and N (inclusive).
+
+He has made a cake of beauty i, taste j, and popularity k for every triple (i,j,k) (1≤i,j,k≤N).
+Then, he has arranged these N^3 cakes in a row, as follows:
+
+The cakes are in ascending order of sum of beauty, taste, and popularity from left to right.
+For two cakes with the same sum of beauty, taste, and popularity, the cake with the smaller beauty is to the left.
+For two cakes with the same sum and the same beauty, the cake with the smaller taste is to the left.
+Find the beauty, taste, and popularity of the 
+K-th cake from the left.
