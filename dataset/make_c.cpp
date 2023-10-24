@@ -363,7 +363,7 @@ int main(){
 	reading(s+".txt");
 	string line;
 	string t_path="";
-	ifstream myfile (s+"_problem.txt");
+	ifstream myfile (s+"_problem_jp.txt");
 	while(getline(myfile,line)){
 	t_path+=line;    
 	}
