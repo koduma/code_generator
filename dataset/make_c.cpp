@@ -168,8 +168,14 @@ node BEAM_SEARCH2(node n) {
 			cand.cur=it->second;   
 			cand.str=cand.str+'\n'+unword[it->second];
 			node n2=BEAM_SEARCH(cand);
-			string x=ans.substr(0,(int)cand.str.size());
-			string y=cand.str;
+			int a=(int)cand.str.size()-(int)unword[it->second].size();
+			int b=(int)unword[it->second].size();
+			if(a<0){a=0;}
+			if(a>(int)ans.size()){a=(int)ans.size();}
+			if(a+b>(int)ans.size()){b=(int)ans.size()-a;}
+			if(b<0){b=0;} 
+			string x=ans.substr(a,b);                
+			string y=unword[it->second];
 			int diff=distance(x,y);
 			if(diff==rnd(0,0)){cand.ev=100000-diff;}
 			else{cand.ev=0;}    
