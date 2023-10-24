@@ -27,7 +27,8 @@
 
 using namespace std;
 
-#define TURN 1000 
+#define TURN 1000
+#define CODE_LENGTH 2000
 
 unordered_map<string,int>word;
 unordered_map<int,string>unword;
@@ -58,7 +59,7 @@ int length;
 
 string ans;
 
-int LP[2005][2005];
+int LP[CODE_LENGTH+5][CODE_LENGTH+5];
 
 int distance(string x,string y){
   
@@ -177,7 +178,7 @@ node BEAM_SEARCH2(node n) {
 			string x=ans.substr(a,b);                
 			string y=unword[it->second];
 			int diff=distance(x,y);
-			if(diff==rnd(0,0)){cand.ev=100000-diff;}
+			if(diff==rnd(0,1)){cand.ev=100000-diff;}
 			else{cand.ev=0;}    
 			cand.ev+=-diff+(i+1)*100;//+prob[it->second]+n2.ev;                  
 			vn.push_back(cand);   
@@ -375,7 +376,7 @@ int main(){
 	}
 	myfile.close();
 	while(1){
-	if((int)t_path.size()<2000){t_path+="&";}
+	if((int)t_path.size()<CODE_LENGTH){t_path+="&";}
 	else{break;}
 	}
 	int d=distance(start,t_path);    
