@@ -173,7 +173,7 @@ node BEAM_SEARCH2(node n) {
 			string x=ans.substr(a,b);                
 			string y=unword[it->second];
 			int diff=distance(x,y);
-			if(diff==rnd(0,0)){cand.ev=100000-diff;}
+			if(diff==rnd(0,1)){cand.ev=100000-diff;}
 			else{cand.ev=0;}    
 			cand.ev+=-diff+(i+1)*100;    
 			vn.push_back(cand);    
@@ -203,65 +203,9 @@ node BEAM_SEARCH2(node n) {
 				push_node++;
 			}
 		}
-		if(!congrats){return bestAction;}
+		if(!congrats||i==(int)ans.size()-1){return bestAction;}
 	}
 	return bestAction;
-}
-
-node BEAM_SEARCH3(node n) {
-	
-	vector<node>dque;
-	dque.push_back(n);
-
-	node bestAction=n;
-	
-	int maxvalue=-1000000;
-    
-    //2手目以降をビームサーチで探索
-	for (int i = 0;i<TURN; i++) {
-		int ks = (int)dque.size();
-		vector<node>vn;
-		for (int k = 0; k < ks; k++) {
-			node temp = dque[k];
-			(temp.v)[temp.cur]++;
-			//if((temp.v)[temp.cur]>=5){continue;}
-			auto p = words.equal_range(temp.cur);
-			for (auto it = p.first; it != p.second; ++it) {   
-			node cand = temp;
-			string s=unword[it->second];    
-			if(s==""||s==" "||(it->second==0)){cand.ev=0;}
-			cand.cur=it->second;
-			cand.str=cand.str+unword[it->second];
-			node n2=BEAM_SEARCH2(cand);
-			cand.ev=n2.ev+(i+1);
-			if(distance(ans,n2.str)<=1){return n2;}    
-			vn.push_back(cand);                
-			}
-		}
-		//printf("depth=%d/%d\n",i+1,TURN);
-		dque.clear();
-		vector<pair<int,int> >vec;
-		for (int j = 0; j < (int)vn.size(); j++) {
-		vec.push_back(make_pair(-vn[j].ev,j));
-		}
-		sort(vec.begin(),vec.end());
-		int push_node=0;
-		for (int j = 0; push_node < 1;j++) {
-			if(j>=(int)vec.size()){break;}
-			int x=vec[j].second;
-			node temp = vn[x];
-			if(temp.ev>maxvalue){
-				maxvalue=temp.ev;
-				bestAction=temp;
-			}
-			if (i < TURN) {
-				dque.push_back(temp);
-				push_node++;
-			}
-		}
-	}
-	return bestAction;
-    
 }
 
 int counter=0;
@@ -277,16 +221,17 @@ void reading(string s){
 	myfile.close();    
 	
 	for(int i=0;i<(int)t_path.size();i++){
+	
 	for(int j=0;j<(int)t_path[i].size();j++){
         
 	FILE *file;
 	file = fopen("ascii.txt", "w");
-	fprintf(file, "%c",t_path[i][j]);   
+	fprintf(file, "%c",t_path[i][j]);
 	fclose(file);
         ifstream ifs("ascii.txt");    
         string w;
 	ifs >> w;
-	ifs.close();    
+        ifs.close();    
         counter++;
 	if(word[w]==0){
 	word[w]=counter;
@@ -294,10 +239,10 @@ void reading(string s){
 	}
 	}
 	}    
-        
-	vector<int>vec;
+        vector<int>vec;
         for(int i=0;i<(int)t_path.size();i++){
         for(int j=0;j<(int)t_path[i].size();j++){
+        
 	FILE *file;
 	file = fopen("ascii.txt", "w");
 	fprintf(file, "%c",t_path[i][j]);
@@ -309,6 +254,7 @@ void reading(string s){
 	vec.push_back(word[w]);
 	prob[word[w]]++;
         }
+    
 	for(int r=0;r<(int)vec.size()-1;r++){
 	int cur=vec[r];
 	int nexthash=vec[r+1];
@@ -321,16 +267,15 @@ void reading(string s){
 	}
     }
 }
-
 int main(){
 	
 	string start;
-	getline(cin, start,'$');//最後にctrl+d
 	
+	getline(cin, start,'$');
 	while(1){
 	bool escape=true;
 	for(int i=0;i<(int)start.size();i++){
-	if(start[i]=='\n'){start.erase(i, 1);escape=false;break;}
+        if(start[i]=='\n'){start.erase(i, 1);escape=false;break;}
 	}
 	if(escape){break;}
 	}    
@@ -381,7 +326,7 @@ int main(){
 	n.v=v2;
 	n.str=unword[cur];
 	n.ev=0;
-	n=BEAM_SEARCH3(n);
+	n=BEAM_SEARCH2(n);
 	for(int i=0;i<(int)n.str.size();i++){
 	if(n.str[i]=='&'){n.str[i]='\n';}
 	}
