@@ -105,7 +105,7 @@ node BEAM_SEARCH(node n) {
 			for (auto it = p.first; it != p.second; ++it) {
 				node cand = temp;
 				string s=unword[it->second];
-        if(unword[it->second]==""){unword[it->second]=" ";}
+				if(unword[it->second]==""){unword[it->second]=" ";}
 				if(it->second==0){cand.ev=0;}
 				cand.cur=it->second;
 				cand.str=cand.str+unword[it->second];
@@ -234,7 +234,7 @@ node BEAM_SEARCH3(node n) {
 			cand.str=cand.str+unword[it->second];
 			node n2=BEAM_SEARCH2(cand);
 			cand.ev=n2.ev+(i+1);
-            if(distance(ans,n2.str)<=1){return n2;}    
+			if(distance(ans,n2.str)<=1){return n2;}    
 			vn.push_back(cand);                
 			}
 		}
@@ -267,87 +267,73 @@ node BEAM_SEARCH3(node n) {
 int counter=0;
 
 void reading(string s){
-    
-  string line;
-  vector<string> t_path;
+	
+	string line;
+	vector<string> t_path;
 	ifstream myfile (s);
 	while(getline(myfile,line)){    
 	t_path.push_back(line+'&');    
 	}
 	myfile.close();    
-    
-  for(int i=0;i<(int)t_path.size();i++){
 	
-  for(int j=0;j<(int)t_path[i].size();j++){
+	for(int i=0;i<(int)t_path.size();i++){
+	for(int j=0;j<(int)t_path[i].size();j++){
         
-    FILE *file;
-    file = fopen("ascii.txt", "w");
-    fprintf(file, "%c",t_path[i][j]);   
-    fclose(file);
+	FILE *file;
+	file = fopen("ascii.txt", "w");
+	fprintf(file, "%c",t_path[i][j]);   
+	fclose(file);
+        ifstream ifs("ascii.txt");    
+        string w;
+	ifs >> w;
+	ifs.close();    
+        counter++;
+	if(word[w]==0){
+	word[w]=counter;
+	unword[counter]=w;
+	}
+	}
+	}    
         
-    ifstream ifs("ascii.txt");    
-        
-    string w;
-    ifs >> w;
-        
-    ifs.close();    
-        
-    counter++;   
-    if(word[w]==0){    
-    word[w]=counter;
-    unword[counter]=w;       
-    }
-  }
-  }    
-        
-  vector<int>vec;
-        
-  for(int i=0;i<(int)t_path.size();i++){
-            
-  for(int j=0;j<(int)t_path[i].size();j++){
-            
-    FILE *file;
-    file = fopen("ascii.txt", "w");
-    fprintf(file, "%c",t_path[i][j]);
-    fclose(file);
-        
-    ifstream ifs("ascii.txt");    
-        
-    string w;
-    ifs >> w;
-        
-    ifs.close();      
-    vec.push_back(word[w]);   
-    prob[word[w]]++;
-           
-    }
-    for(int r=0;r<(int)vec.size()-1;r++){    
-    int cur=vec[r];
-    int nexthash=vec[r+1];
-    bool find=false;
-    auto p = words.equal_range(cur);
-    for (auto it = p.first; it != p.second; ++it) {
-    if(it->second==nexthash){find=true;break;}
-    }
-    if(!find){words.emplace(cur,nexthash);}
-    }
+	vector<int>vec;
+        for(int i=0;i<(int)t_path.size();i++){
+        for(int j=0;j<(int)t_path[i].size();j++){
+	FILE *file;
+	file = fopen("ascii.txt", "w");
+	fprintf(file, "%c",t_path[i][j]);
+	fclose(file);
+        ifstream ifs("ascii.txt");    
+        string w;
+	ifs >> w;
+        ifs.close();
+	vec.push_back(word[w]);
+	prob[word[w]]++;
+        }
+	for(int r=0;r<(int)vec.size()-1;r++){
+	int cur=vec[r];
+	int nexthash=vec[r+1];
+	bool find=false;
+	auto p = words.equal_range(cur);
+	for (auto it = p.first; it != p.second; ++it) {
+	if(it->second==nexthash){find=true;break;}
+	}
+	if(!find){words.emplace(cur,nexthash);}
+	}
     }
 }
 
 int main(){
 	
 	string start;
-  
-  getline(cin, start,'$');//最後にctrl+d
-    
-    
-  while(1){
-  bool escape=true;
-  for(int i=0;i<(int)start.size();i++){
-  if(start[i]=='\n'){start.erase(i, 1);escape=false;break;}
-  }
-  if(escape){break;}    
-  }    
+	getline(cin, start,'$');//最後にctrl+d
+	
+	while(1){
+	bool escape=true;
+	for(int i=0;i<(int)start.size();i++){
+	if(start[i]=='\n'){start.erase(i, 1);escape=false;break;}
+	}
+	if(escape){break;}
+	}    
     
     
 	int mind=1000000;
@@ -396,9 +382,9 @@ int main(){
 	n.str=unword[cur];
 	n.ev=0;
 	n=BEAM_SEARCH3(n);
-  for(int i=0;i<(int)n.str.size();i++){
-  if(n.str[i]=='&'){n.str[i]='\n';}
-  }
+	for(int i=0;i<(int)n.str.size();i++){
+	if(n.str[i]=='&'){n.str[i]='\n';}
+	}
 	cout<<"miles="<<n.ev<<",output=\n"<<n.str;
 	ofstream fi("gene.txt");
 	fi<<n.str;
