@@ -362,7 +362,7 @@ int main(){
 	
 	string start;
 	
-	getline(cin, start);
+	getline(cin, start,'$');
     
     
 	int mind=1000000;
