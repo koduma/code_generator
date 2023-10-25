@@ -173,7 +173,10 @@ node BEAM_SEARCH2(node n) {
 			string x=ans.substr(a,b);                
 			string y=unword[it->second];
 			int diff=distance(x,y);
-			if(diff==rnd(0,1)){cand.ev=100000-diff;}
+			int next;
+			if(rnd(1,100)<=30){next=1;}
+			else{next=0;}	
+			if(diff==rnd(0,next)){cand.ev=100000-diff;}
 			else{cand.ev=0;}    
 			cand.ev+=-diff+(i+1)*100;    
 			vn.push_back(cand);    
