@@ -369,7 +369,7 @@ void loop(string start){
 	int find=-1;
     
 	for(int i=1;i<=LATEST;i++){
-    string s=to_string(i);
+	string s=to_string(i);
 	reading(s+".txt");    
 	string line;
 	string t_path="";
@@ -385,8 +385,8 @@ void loop(string start){
 	int d=distance(start,t_path);    
 	if(mind>d){mind=d;find=i;}   
 	}
-    
-    cout<<find<<"_problem.txt"<<endl;
+	
+	cout<<find<<"_problem.txt"<<endl;
 	
 	string line;
 	string tmp="";
@@ -420,31 +420,22 @@ void loop(string start){
 int main(){
     
     for(int i=0;i<100;i++){
-        
-    FILE *file;
-	file = fopen("LATEST.txt", "r");
-	fscanf(file, "%d", &LATEST);
-	fclose(file);    
-    
-    int t=rnd(1,LATEST);
-    
-    string line="";
-    string t_path="";
-    
-    ifstream myfile (to_string(t)+"_problem.txt");
-    while(getline(myfile,line)){
-    if(line!=""){
-      t_path+=line+'\n';
-	}    
-	}
-	myfile.close();
-    
-    cout<<t<<"_problem.txt"<<endl;
-    
-    loop(t_path);
-        
-    system("./make_topic");    
-        
+	    FILE *file;
+	    file = fopen("LATEST.txt", "r");
+	    fscanf(file, "%d", &LATEST);
+	    fclose(file);    
+	    int t=rnd(1,LATEST);
+	    string line="";
+	    string t_path="";
+	    ifstream myfile (to_string(t)+"_problem.txt");
+	    while(getline(myfile,line)){
+		    if(line!=""){t_path+=line+'\n';}
+	    }
+	    myfile.close();
+	    
+	    cout<<t<<"_problem.txt"<<endl;
+	    loop(t_path);
+	    system("./make_answer");
     }    
     
     return 0;
