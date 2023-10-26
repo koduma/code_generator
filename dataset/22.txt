@@ -1,0 +1,26 @@
+//abc042_a
+
+#include <stdio.h>
+
+int main(){
+	int a, b, c,w=0,q=0;
+	scanf("%d%d%d",&a,&b,&c);
+	if (a == 5)
+		w++;
+	else if (a == 7)
+		q++;
+	if (b == 5)
+		w++;
+	else if (b == 7)
+		q++;
+	if (c == 5)
+		w++;
+	else if (c == 7)
+		q++;
+	if (w == 2 && q == 1)
+		printf("YES");
+	else
+		printf("NO");
+
+	return 0;
+}

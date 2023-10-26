@@ -1,0 +1,8 @@
+Iroha has a sequence of N strings S1,S2,...,SN. 
+The length of each string is L.
+She will concatenate all of the strings in some order, to produce a long string.
+Among all strings that she can produce in this way, find the lexicographically smallest one.
+Here, a string s=s1s2s3...sn is lexicographically smaller than another string t=t1t2t3...tm if and only if one of the following holds:
+
+There exists an index i(1≦i≦min(n,m)), such that sj=tj for all indices j(1≦j<i), and si<ti.
+si=ti for all integers i(1≦i≦min(n,m)), and n<m.

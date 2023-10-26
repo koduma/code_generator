@@ -1,0 +1,33 @@
+//abc042_c
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int K;
+int dislikes[10];
+
+bool is_disliked(int n) {
+    while (n > 0) {
+        int digit = n % 10;
+        for (int i = 0; i < K; i++) {
+            if (dislikes[i] == digit) return true;
+        }
+        n /= 10;
+    }
+    return false;
+}
+
+int main(){
+    int N;
+    scanf("%d %d", &N, &K);
+    for (int i = 0; i < K; i++) {
+        scanf("%d", &dislikes[i]);
+    }
+
+    while (is_disliked(N)) {
+        N++;
+    }
+
+    printf("%d\n", N);
+    return 0;
+}
