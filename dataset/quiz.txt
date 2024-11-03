@@ -1,0 +1,6 @@
+You are given an integer N.
+Do the following operation K times on it and print the resulting integer.
+
+If N is a multiple of 200, divide it by 200.
+Otherwise, see N as a string and append 200 to the end of it.
+For example, 7 would become 7200 and 1234 would become 1234200.
