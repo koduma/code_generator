@@ -5,6 +5,7 @@ import Levenshtein
 from googletrans import Translator
 import re
 import sys
+import subprocess
 
 label=""
 
@@ -196,3 +197,15 @@ for i in range(100):
     score+=s        
 print("\nAnswer:\n"+ans)
 print("\nScore:\n"+str(score))
+
+f = open("gene.cpp", 'w')
+f.write(ans)
+f.close()
+subprocess.call("python3 compile.py", shell=True)
+f = open('log.txt', 'r')
+num = f.read()
+f.close()
+if num==0:
+    print("failed")
+else:
+    print("success")
