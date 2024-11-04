@@ -128,11 +128,12 @@ for l in range(len(label)):
 def coding(s,quiz3):
     maxscore=0
     ret=""
+    ret2=""
     for d in range(counter):
         a=0
         b=0
         sum=0
-        ret2=""
+        hit=0
         if len(code[d])>0:
             for c in range(len(quiz3)):
                 if str(quiz3[c]).isalnum()==False:
@@ -145,13 +146,14 @@ def coding(s,quiz3):
                     a+=datakun0[tmp]
                     b+=datakun1[tmp]
                     sum=a+b
+                    hit+=1
                 #if str(code[d])=="//abc201_d":    
                     #print(str(tmp)+",sum="+str(sum)+",tmp="+str(tmp)+",NoAns["+str(quiz3[c])+"]="+str(NoAns[quiz3[c]]))
-                if sum>maxscore:
+                if sum>maxscore and hit>=len(quiz3)/2:
                     maxscore=sum
                     ret=str(code[d])
                     ret2=str(quiz3[c])
-                    #print("maxscore="+str(maxscore)+","+str(ret)+","+str(ret2))
+                    #print("maxscore="+str(maxscore)+",code="+str(ret)+",word="+str(ret2)+",hit="+str(hit))
             #if maxscore>0:
                 #print("maxscore="+str(maxscore)+",code="+str(ret)+",problem="+str(ret2))
     return ret,maxscore
