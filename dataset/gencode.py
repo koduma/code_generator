@@ -174,17 +174,21 @@ quiz3=quiz3.split()
 
 ans=""
 score=0
-br=0
+mainfunc=0
 for i in range(100):
     c,s=coding(i,quiz3)
+    if "main" in c:
+        mainfunc+=1
+        if mainfunc >1:
+            mainfunc=1
+            continue
     if "return 0;" in c:
-        ans=ans+"return 0;\n}"
-        br=i+1
-        break
+        if mainfunc==1:
+            ans=ans+"return 0;\n}"
+            break
     if len(c)==0:
         continue
     ans=ans+c+'\n'
     score+=s
-    br=i+1
-print("score="+str(score/br))    
+print("score="+str(score))    
 print(ans)
