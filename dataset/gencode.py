@@ -151,7 +151,7 @@ def coding(s,quiz3):
                     maxscore=sum
                     ret=str(code[d])
                     ret2=str(quiz3[c])
-                    print("maxscore="+str(maxscore)+","+str(ret)+","+str(ret2))
+                    #print("maxscore="+str(maxscore)+","+str(ret)+","+str(ret2))
             #if maxscore>0:
                 #print("maxscore="+str(maxscore)+",code="+str(ret)+",problem="+str(ret2))
     return ret,maxscore
@@ -169,7 +169,9 @@ for k in range(len(quiz)):
     else:
         quiz3+=quiz[k]
         
-            
+
+print("\nQuiz:\n"+str(quiz3))
+
 quiz3=quiz3.split()
 
 ans=""
@@ -189,6 +191,6 @@ for i in range(100):
     if len(c)==0:
         continue
     ans=ans+c+'\n'
-    score+=s
-print("score="+str(score))    
-print(ans)
+    score+=s        
+print("\nAnswer:\n"+ans)
+print("\nScore:\n"+str(score))
